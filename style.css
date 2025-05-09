@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+  position: relative;
+}
+
+canvas#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+#terminal {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  white-space: pre-line;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.input-line::before {
+  content: "$ ";
+  color: #00ff00;
+}
+
+.terminal {
+  width: 90%;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #111;
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #0f0;
+  text-align: center;
+}
+
+input, button {
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: #0f0;
+  border: 1px solid #0f0;
+  margin-bottom: 10px;
+  font-family: monospace;
+}
+
+button:hover {
+  background: #00aa00;
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}

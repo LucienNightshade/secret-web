@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>🔐 Terminal Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="terminal">
+    <h1>> LOGIN ACCESS</h1>
+    <form onsubmit="return login(event)">
+      <label>USERNAME:</label>
+      <input type="text" id="username" autocomplete="off" required />
+      <label>PASSWORD:</label>
+      <input type="password" id="password" required />
+      <button type="submit">ENTER</button>
+      <p id="message"></p>
+    </form>
+  </div>
+
+  <script>
+    function login(event) {
+      event.preventDefault();
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const msg = document.getElementById("message");
+      const form = document.querySelector("form");
+
+      if (user === "matcha" && pass === "713145") {
+        msg.textContent = "ACCESS GRANTED";
+        msg.style.color = "lime";
+        setTimeout(() => {
+          window.location.href = "welcome.html";
+        }, 1500);
+      } else {
+        msg.textContent = "ACCESS DENIED";
+        msg.style.color = "red";
+        form.classList.add("shake");
+        setTimeout(() => form.classList.remove("shake"), 500);
+      }
+    }
+  </script>
+</body>
+</html>
