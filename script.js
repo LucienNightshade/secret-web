@@ -40,10 +40,49 @@ function typeLine() {
           setTimeout(() => {
             window.location.href = "https://bbsproxy.mcsk.dev/"; // ←変更可能
           }, 1000);
-        } else {
-          output.appendChild(document.createElement("br"));
-          output.appendChild(document.createTextNode("Command not found"));
-        }
+       } else if (cmd === "analyze_logs") {
+  const fakeLogs = [
+    "[✓] Connecting to log server...",
+    "[✓] Decrypting log archive...",
+    "[✓] Parsing memory segment...",
+    "[✓] Anomaly detected in sector 7G",
+    "[✓] Extraction complete.",
+    ">> Logs saved to /tmp/cache/"
+  ];
+
+  let j = 0;
+  function showFakeLog() {
+    if (j < fakeLogs.length) {
+      const logLine = document.createElement("div");
+      logLine.textContent = fakeLogs[j++];
+      output.appendChild(logLine);
+      output.scrollTop = output.scrollHeight;
+      setTimeout(showFakeLog, 600);
+    } else {
+      const inputDiv = document.createElement("div");
+      inputDiv.className = "input-line";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = "Type command...";
+      input.style.background = "black";
+      input.style.color = "#0f0";
+      input.style.border = "none";
+      input.style.outline = "none";
+      input.style.width = "100%";
+
+      input.addEventListener("keydown", arguments.callee);
+      inputDiv.appendChild(input);
+      output.appendChild(inputDiv);
+      input.focus();
+    }
+  }
+
+  setTimeout(showFakeLog, 500);
+} else {
+  output.appendChild(document.createElement("br"));
+  output.appendChild(document.createTextNode("Command not found"));
+}
+
       }
     });
 
